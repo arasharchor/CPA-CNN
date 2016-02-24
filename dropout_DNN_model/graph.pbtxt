@@ -1,0 +1,5437 @@
+node {
+  name: "global_step/initial_value"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_INT32
+        tensor_shape {
+        }
+        int_val: 0
+      }
+    }
+  }
+}
+node {
+  name: "global_step"
+  op: "Variable"
+  attr {
+    key: "container"
+    value {
+      s: ""
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "shape"
+    value {
+      shape {
+      }
+    }
+  }
+  attr {
+    key: "shared_name"
+    value {
+      s: ""
+    }
+  }
+}
+node {
+  name: "global_step/Assign"
+  op: "Assign"
+  input: "global_step"
+  input: "global_step/initial_value"
+  attr {
+    key: "T"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "use_locking"
+    value {
+      b: true
+    }
+  }
+  attr {
+    key: "validate_shape"
+    value {
+      b: true
+    }
+  }
+}
+node {
+  name: "global_step/read"
+  op: "Identity"
+  input: "global_step"
+  attr {
+    key: "T"
+    value {
+      type: DT_INT32
+    }
+  }
+}
+node {
+  name: "input"
+  op: "Placeholder"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "shape"
+    value {
+      shape {
+      }
+    }
+  }
+}
+node {
+  name: "output"
+  op: "Placeholder"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "shape"
+    value {
+      shape {
+      }
+    }
+  }
+}
+node {
+  name: "HistogramSummary/tag"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_STRING
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_STRING
+        tensor_shape {
+        }
+        string_val: "X"
+      }
+    }
+  }
+}
+node {
+  name: "HistogramSummary"
+  op: "HistogramSummary"
+  input: "HistogramSummary/tag"
+  input: "input"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "HistogramSummary_1/tag"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_STRING
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_STRING
+        tensor_shape {
+        }
+        string_val: "y"
+      }
+    }
+  }
+}
+node {
+  name: "HistogramSummary_1"
+  op: "HistogramSummary"
+  input: "HistogramSummary_1/tag"
+  input: "output"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "dnn/layer0/Linear/Matrix/Initializer/random_uniform/shape"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_INT32
+        tensor_shape {
+          dim {
+            size: 2
+          }
+        }
+        tensor_content: "a\000\000\000@\000\000\000"
+      }
+    }
+  }
+}
+node {
+  name: "dnn/layer0/Linear/Matrix/Initializer/random_uniform/min"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_FLOAT
+        tensor_shape {
+        }
+        float_val: -0.17586311698
+      }
+    }
+  }
+}
+node {
+  name: "dnn/layer0/Linear/Matrix/Initializer/random_uniform/max"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_FLOAT
+        tensor_shape {
+        }
+        float_val: 0.17586311698
+      }
+    }
+  }
+}
+node {
+  name: "dnn/layer0/Linear/Matrix/Initializer/random_uniform/RandomUniform"
+  op: "RandomUniform"
+  input: "dnn/layer0/Linear/Matrix/Initializer/random_uniform/shape"
+  attr {
+    key: "T"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "seed"
+    value {
+      i: 42
+    }
+  }
+  attr {
+    key: "seed2"
+    value {
+      i: 13
+    }
+  }
+}
+node {
+  name: "dnn/layer0/Linear/Matrix/Initializer/random_uniform/sub"
+  op: "Sub"
+  input: "dnn/layer0/Linear/Matrix/Initializer/random_uniform/max"
+  input: "dnn/layer0/Linear/Matrix/Initializer/random_uniform/min"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "dnn/layer0/Linear/Matrix/Initializer/random_uniform/mul"
+  op: "Mul"
+  input: "dnn/layer0/Linear/Matrix/Initializer/random_uniform/RandomUniform"
+  input: "dnn/layer0/Linear/Matrix/Initializer/random_uniform/sub"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "dnn/layer0/Linear/Matrix/Initializer/random_uniform"
+  op: "Add"
+  input: "dnn/layer0/Linear/Matrix/Initializer/random_uniform/mul"
+  input: "dnn/layer0/Linear/Matrix/Initializer/random_uniform/min"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "dnn/layer0/Linear/Matrix"
+  op: "Variable"
+  attr {
+    key: "container"
+    value {
+      s: ""
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "shape"
+    value {
+      shape {
+        dim {
+          size: 97
+        }
+        dim {
+          size: 64
+        }
+      }
+    }
+  }
+  attr {
+    key: "shared_name"
+    value {
+      s: ""
+    }
+  }
+}
+node {
+  name: "dnn/layer0/Linear/Matrix/Assign"
+  op: "Assign"
+  input: "dnn/layer0/Linear/Matrix"
+  input: "dnn/layer0/Linear/Matrix/Initializer/random_uniform"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "use_locking"
+    value {
+      b: true
+    }
+  }
+  attr {
+    key: "validate_shape"
+    value {
+      b: true
+    }
+  }
+}
+node {
+  name: "dnn/layer0/Linear/Matrix/read"
+  op: "Identity"
+  input: "dnn/layer0/Linear/Matrix"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "dnn/layer0/Linear/MatMul"
+  op: "MatMul"
+  input: "input"
+  input: "dnn/layer0/Linear/Matrix/read"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "transpose_a"
+    value {
+      b: false
+    }
+  }
+  attr {
+    key: "transpose_b"
+    value {
+      b: false
+    }
+  }
+}
+node {
+  name: "dnn/layer0/Linear/Bias/Initializer/Const"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_FLOAT
+        tensor_shape {
+          dim {
+            size: 64
+          }
+        }
+        float_val: 0.0
+      }
+    }
+  }
+}
+node {
+  name: "dnn/layer0/Linear/Bias"
+  op: "Variable"
+  attr {
+    key: "container"
+    value {
+      s: ""
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "shape"
+    value {
+      shape {
+        dim {
+          size: 64
+        }
+      }
+    }
+  }
+  attr {
+    key: "shared_name"
+    value {
+      s: ""
+    }
+  }
+}
+node {
+  name: "dnn/layer0/Linear/Bias/Assign"
+  op: "Assign"
+  input: "dnn/layer0/Linear/Bias"
+  input: "dnn/layer0/Linear/Bias/Initializer/Const"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "use_locking"
+    value {
+      b: true
+    }
+  }
+  attr {
+    key: "validate_shape"
+    value {
+      b: true
+    }
+  }
+}
+node {
+  name: "dnn/layer0/Linear/Bias/read"
+  op: "Identity"
+  input: "dnn/layer0/Linear/Bias"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "dnn/layer0/add"
+  op: "Add"
+  input: "dnn/layer0/Linear/MatMul"
+  input: "dnn/layer0/Linear/Bias/read"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "dnn/layer0/Relu"
+  op: "Relu"
+  input: "dnn/layer0/add"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "dnn/layer1/Linear/Matrix/Initializer/random_uniform/shape"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_INT32
+        tensor_shape {
+          dim {
+            size: 2
+          }
+        }
+        tensor_content: "@\000\000\000\000\001\000\000"
+      }
+    }
+  }
+}
+node {
+  name: "dnn/layer1/Linear/Matrix/Initializer/random_uniform/min"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_FLOAT
+        tensor_shape {
+        }
+        float_val: -0.21650634706
+      }
+    }
+  }
+}
+node {
+  name: "dnn/layer1/Linear/Matrix/Initializer/random_uniform/max"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_FLOAT
+        tensor_shape {
+        }
+        float_val: 0.21650634706
+      }
+    }
+  }
+}
+node {
+  name: "dnn/layer1/Linear/Matrix/Initializer/random_uniform/RandomUniform"
+  op: "RandomUniform"
+  input: "dnn/layer1/Linear/Matrix/Initializer/random_uniform/shape"
+  attr {
+    key: "T"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "seed"
+    value {
+      i: 42
+    }
+  }
+  attr {
+    key: "seed2"
+    value {
+      i: 30
+    }
+  }
+}
+node {
+  name: "dnn/layer1/Linear/Matrix/Initializer/random_uniform/sub"
+  op: "Sub"
+  input: "dnn/layer1/Linear/Matrix/Initializer/random_uniform/max"
+  input: "dnn/layer1/Linear/Matrix/Initializer/random_uniform/min"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "dnn/layer1/Linear/Matrix/Initializer/random_uniform/mul"
+  op: "Mul"
+  input: "dnn/layer1/Linear/Matrix/Initializer/random_uniform/RandomUniform"
+  input: "dnn/layer1/Linear/Matrix/Initializer/random_uniform/sub"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "dnn/layer1/Linear/Matrix/Initializer/random_uniform"
+  op: "Add"
+  input: "dnn/layer1/Linear/Matrix/Initializer/random_uniform/mul"
+  input: "dnn/layer1/Linear/Matrix/Initializer/random_uniform/min"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "dnn/layer1/Linear/Matrix"
+  op: "Variable"
+  attr {
+    key: "container"
+    value {
+      s: ""
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "shape"
+    value {
+      shape {
+        dim {
+          size: 64
+        }
+        dim {
+          size: 256
+        }
+      }
+    }
+  }
+  attr {
+    key: "shared_name"
+    value {
+      s: ""
+    }
+  }
+}
+node {
+  name: "dnn/layer1/Linear/Matrix/Assign"
+  op: "Assign"
+  input: "dnn/layer1/Linear/Matrix"
+  input: "dnn/layer1/Linear/Matrix/Initializer/random_uniform"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "use_locking"
+    value {
+      b: true
+    }
+  }
+  attr {
+    key: "validate_shape"
+    value {
+      b: true
+    }
+  }
+}
+node {
+  name: "dnn/layer1/Linear/Matrix/read"
+  op: "Identity"
+  input: "dnn/layer1/Linear/Matrix"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "dnn/layer1/Linear/MatMul"
+  op: "MatMul"
+  input: "dnn/layer0/Relu"
+  input: "dnn/layer1/Linear/Matrix/read"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "transpose_a"
+    value {
+      b: false
+    }
+  }
+  attr {
+    key: "transpose_b"
+    value {
+      b: false
+    }
+  }
+}
+node {
+  name: "dnn/layer1/Linear/Bias/Initializer/Const"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_FLOAT
+        tensor_shape {
+          dim {
+            size: 256
+          }
+        }
+        float_val: 0.0
+      }
+    }
+  }
+}
+node {
+  name: "dnn/layer1/Linear/Bias"
+  op: "Variable"
+  attr {
+    key: "container"
+    value {
+      s: ""
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "shape"
+    value {
+      shape {
+        dim {
+          size: 256
+        }
+      }
+    }
+  }
+  attr {
+    key: "shared_name"
+    value {
+      s: ""
+    }
+  }
+}
+node {
+  name: "dnn/layer1/Linear/Bias/Assign"
+  op: "Assign"
+  input: "dnn/layer1/Linear/Bias"
+  input: "dnn/layer1/Linear/Bias/Initializer/Const"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "use_locking"
+    value {
+      b: true
+    }
+  }
+  attr {
+    key: "validate_shape"
+    value {
+      b: true
+    }
+  }
+}
+node {
+  name: "dnn/layer1/Linear/Bias/read"
+  op: "Identity"
+  input: "dnn/layer1/Linear/Bias"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "dnn/layer1/add"
+  op: "Add"
+  input: "dnn/layer1/Linear/MatMul"
+  input: "dnn/layer1/Linear/Bias/read"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "dnn/layer1/Relu"
+  op: "Relu"
+  input: "dnn/layer1/add"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "dnn/layer2/Linear/Matrix/Initializer/random_uniform/shape"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_INT32
+        tensor_shape {
+          dim {
+            size: 2
+          }
+        }
+        tensor_content: "\000\001\000\000\240\037\000\000"
+      }
+    }
+  }
+}
+node {
+  name: "dnn/layer2/Linear/Matrix/Initializer/random_uniform/min"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_FLOAT
+        tensor_shape {
+        }
+        float_val: -0.10825317353
+      }
+    }
+  }
+}
+node {
+  name: "dnn/layer2/Linear/Matrix/Initializer/random_uniform/max"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_FLOAT
+        tensor_shape {
+        }
+        float_val: 0.10825317353
+      }
+    }
+  }
+}
+node {
+  name: "dnn/layer2/Linear/Matrix/Initializer/random_uniform/RandomUniform"
+  op: "RandomUniform"
+  input: "dnn/layer2/Linear/Matrix/Initializer/random_uniform/shape"
+  attr {
+    key: "T"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "seed"
+    value {
+      i: 42
+    }
+  }
+  attr {
+    key: "seed2"
+    value {
+      i: 47
+    }
+  }
+}
+node {
+  name: "dnn/layer2/Linear/Matrix/Initializer/random_uniform/sub"
+  op: "Sub"
+  input: "dnn/layer2/Linear/Matrix/Initializer/random_uniform/max"
+  input: "dnn/layer2/Linear/Matrix/Initializer/random_uniform/min"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "dnn/layer2/Linear/Matrix/Initializer/random_uniform/mul"
+  op: "Mul"
+  input: "dnn/layer2/Linear/Matrix/Initializer/random_uniform/RandomUniform"
+  input: "dnn/layer2/Linear/Matrix/Initializer/random_uniform/sub"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "dnn/layer2/Linear/Matrix/Initializer/random_uniform"
+  op: "Add"
+  input: "dnn/layer2/Linear/Matrix/Initializer/random_uniform/mul"
+  input: "dnn/layer2/Linear/Matrix/Initializer/random_uniform/min"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "dnn/layer2/Linear/Matrix"
+  op: "Variable"
+  attr {
+    key: "container"
+    value {
+      s: ""
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "shape"
+    value {
+      shape {
+        dim {
+          size: 256
+        }
+        dim {
+          size: 8096
+        }
+      }
+    }
+  }
+  attr {
+    key: "shared_name"
+    value {
+      s: ""
+    }
+  }
+}
+node {
+  name: "dnn/layer2/Linear/Matrix/Assign"
+  op: "Assign"
+  input: "dnn/layer2/Linear/Matrix"
+  input: "dnn/layer2/Linear/Matrix/Initializer/random_uniform"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "use_locking"
+    value {
+      b: true
+    }
+  }
+  attr {
+    key: "validate_shape"
+    value {
+      b: true
+    }
+  }
+}
+node {
+  name: "dnn/layer2/Linear/Matrix/read"
+  op: "Identity"
+  input: "dnn/layer2/Linear/Matrix"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "dnn/layer2/Linear/MatMul"
+  op: "MatMul"
+  input: "dnn/layer1/Relu"
+  input: "dnn/layer2/Linear/Matrix/read"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "transpose_a"
+    value {
+      b: false
+    }
+  }
+  attr {
+    key: "transpose_b"
+    value {
+      b: false
+    }
+  }
+}
+node {
+  name: "dnn/layer2/Linear/Bias/Initializer/Const"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_FLOAT
+        tensor_shape {
+          dim {
+            size: 8096
+          }
+        }
+        float_val: 0.0
+      }
+    }
+  }
+}
+node {
+  name: "dnn/layer2/Linear/Bias"
+  op: "Variable"
+  attr {
+    key: "container"
+    value {
+      s: ""
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "shape"
+    value {
+      shape {
+        dim {
+          size: 8096
+        }
+      }
+    }
+  }
+  attr {
+    key: "shared_name"
+    value {
+      s: ""
+    }
+  }
+}
+node {
+  name: "dnn/layer2/Linear/Bias/Assign"
+  op: "Assign"
+  input: "dnn/layer2/Linear/Bias"
+  input: "dnn/layer2/Linear/Bias/Initializer/Const"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "use_locking"
+    value {
+      b: true
+    }
+  }
+  attr {
+    key: "validate_shape"
+    value {
+      b: true
+    }
+  }
+}
+node {
+  name: "dnn/layer2/Linear/Bias/read"
+  op: "Identity"
+  input: "dnn/layer2/Linear/Bias"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "dnn/layer2/add"
+  op: "Add"
+  input: "dnn/layer2/Linear/MatMul"
+  input: "dnn/layer2/Linear/Bias/read"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "dnn/layer2/Relu"
+  op: "Relu"
+  input: "dnn/layer2/add"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "logistic_regression/HistogramSummary/tag"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_STRING
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_STRING
+        tensor_shape {
+        }
+        string_val: "logistic_regression.X"
+      }
+    }
+  }
+}
+node {
+  name: "logistic_regression/HistogramSummary"
+  op: "HistogramSummary"
+  input: "logistic_regression/HistogramSummary/tag"
+  input: "dnn/layer2/Relu"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "logistic_regression/HistogramSummary_1/tag"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_STRING
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_STRING
+        tensor_shape {
+        }
+        string_val: "logistic_regression.y"
+      }
+    }
+  }
+}
+node {
+  name: "logistic_regression/HistogramSummary_1"
+  op: "HistogramSummary"
+  input: "logistic_regression/HistogramSummary_1/tag"
+  input: "output"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "logistic_regression/weights/Initializer/random_uniform/shape"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_INT32
+        tensor_shape {
+          dim {
+            size: 2
+          }
+        }
+        tensor_content: "\240\037\000\000\026\000\000\000"
+      }
+    }
+  }
+}
+node {
+  name: "logistic_regression/weights/Initializer/random_uniform/min"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_FLOAT
+        tensor_shape {
+        }
+        float_val: -0.0192497633398
+      }
+    }
+  }
+}
+node {
+  name: "logistic_regression/weights/Initializer/random_uniform/max"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_FLOAT
+        tensor_shape {
+        }
+        float_val: 0.0192497633398
+      }
+    }
+  }
+}
+node {
+  name: "logistic_regression/weights/Initializer/random_uniform/RandomUniform"
+  op: "RandomUniform"
+  input: "logistic_regression/weights/Initializer/random_uniform/shape"
+  attr {
+    key: "T"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "seed"
+    value {
+      i: 42
+    }
+  }
+  attr {
+    key: "seed2"
+    value {
+      i: 68
+    }
+  }
+}
+node {
+  name: "logistic_regression/weights/Initializer/random_uniform/sub"
+  op: "Sub"
+  input: "logistic_regression/weights/Initializer/random_uniform/max"
+  input: "logistic_regression/weights/Initializer/random_uniform/min"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "logistic_regression/weights/Initializer/random_uniform/mul"
+  op: "Mul"
+  input: "logistic_regression/weights/Initializer/random_uniform/RandomUniform"
+  input: "logistic_regression/weights/Initializer/random_uniform/sub"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "logistic_regression/weights/Initializer/random_uniform"
+  op: "Add"
+  input: "logistic_regression/weights/Initializer/random_uniform/mul"
+  input: "logistic_regression/weights/Initializer/random_uniform/min"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "logistic_regression/weights"
+  op: "Variable"
+  attr {
+    key: "container"
+    value {
+      s: ""
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "shape"
+    value {
+      shape {
+        dim {
+          size: 8096
+        }
+        dim {
+          size: 22
+        }
+      }
+    }
+  }
+  attr {
+    key: "shared_name"
+    value {
+      s: ""
+    }
+  }
+}
+node {
+  name: "logistic_regression/weights/Assign"
+  op: "Assign"
+  input: "logistic_regression/weights"
+  input: "logistic_regression/weights/Initializer/random_uniform"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "use_locking"
+    value {
+      b: true
+    }
+  }
+  attr {
+    key: "validate_shape"
+    value {
+      b: true
+    }
+  }
+}
+node {
+  name: "logistic_regression/weights/read"
+  op: "Identity"
+  input: "logistic_regression/weights"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "logistic_regression/bias/Initializer/random_uniform/shape"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_INT32
+        tensor_shape {
+          dim {
+            size: 1
+          }
+        }
+        int_val: 22
+      }
+    }
+  }
+}
+node {
+  name: "logistic_regression/bias/Initializer/random_uniform/min"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_FLOAT
+        tensor_shape {
+        }
+        float_val: -1.73205077648
+      }
+    }
+  }
+}
+node {
+  name: "logistic_regression/bias/Initializer/random_uniform/max"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_FLOAT
+        tensor_shape {
+        }
+        float_val: 1.73205077648
+      }
+    }
+  }
+}
+node {
+  name: "logistic_regression/bias/Initializer/random_uniform/RandomUniform"
+  op: "RandomUniform"
+  input: "logistic_regression/bias/Initializer/random_uniform/shape"
+  attr {
+    key: "T"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "seed"
+    value {
+      i: 42
+    }
+  }
+  attr {
+    key: "seed2"
+    value {
+      i: 78
+    }
+  }
+}
+node {
+  name: "logistic_regression/bias/Initializer/random_uniform/sub"
+  op: "Sub"
+  input: "logistic_regression/bias/Initializer/random_uniform/max"
+  input: "logistic_regression/bias/Initializer/random_uniform/min"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "logistic_regression/bias/Initializer/random_uniform/mul"
+  op: "Mul"
+  input: "logistic_regression/bias/Initializer/random_uniform/RandomUniform"
+  input: "logistic_regression/bias/Initializer/random_uniform/sub"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "logistic_regression/bias/Initializer/random_uniform"
+  op: "Add"
+  input: "logistic_regression/bias/Initializer/random_uniform/mul"
+  input: "logistic_regression/bias/Initializer/random_uniform/min"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "logistic_regression/bias"
+  op: "Variable"
+  attr {
+    key: "container"
+    value {
+      s: ""
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "shape"
+    value {
+      shape {
+        dim {
+          size: 22
+        }
+      }
+    }
+  }
+  attr {
+    key: "shared_name"
+    value {
+      s: ""
+    }
+  }
+}
+node {
+  name: "logistic_regression/bias/Assign"
+  op: "Assign"
+  input: "logistic_regression/bias"
+  input: "logistic_regression/bias/Initializer/random_uniform"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "use_locking"
+    value {
+      b: true
+    }
+  }
+  attr {
+    key: "validate_shape"
+    value {
+      b: true
+    }
+  }
+}
+node {
+  name: "logistic_regression/bias/read"
+  op: "Identity"
+  input: "logistic_regression/bias"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "logistic_regression/HistogramSummary_2/tag"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_STRING
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_STRING
+        tensor_shape {
+        }
+        string_val: "logistic_regression.weights"
+      }
+    }
+  }
+}
+node {
+  name: "logistic_regression/HistogramSummary_2"
+  op: "HistogramSummary"
+  input: "logistic_regression/HistogramSummary_2/tag"
+  input: "logistic_regression/weights/read"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "logistic_regression/HistogramSummary_3/tag"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_STRING
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_STRING
+        tensor_shape {
+        }
+        string_val: "logistic_regression.bias"
+      }
+    }
+  }
+}
+node {
+  name: "logistic_regression/HistogramSummary_3"
+  op: "HistogramSummary"
+  input: "logistic_regression/HistogramSummary_3/tag"
+  input: "logistic_regression/bias/read"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "logistic_regression/softmax_classifier/xw_plus_b/MatMul"
+  op: "MatMul"
+  input: "dnn/layer2/Relu"
+  input: "logistic_regression/weights/read"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "transpose_a"
+    value {
+      b: false
+    }
+  }
+  attr {
+    key: "transpose_b"
+    value {
+      b: false
+    }
+  }
+}
+node {
+  name: "logistic_regression/softmax_classifier/xw_plus_b"
+  op: "BiasAdd"
+  input: "logistic_regression/softmax_classifier/xw_plus_b/MatMul"
+  input: "logistic_regression/bias/read"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "logistic_regression/softmax_classifier/xent_raw"
+  op: "SoftmaxCrossEntropyWithLogits"
+  input: "logistic_regression/softmax_classifier/xw_plus_b"
+  input: "output"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "logistic_regression/softmax_classifier/Rank"
+  op: "Rank"
+  input: "logistic_regression/softmax_classifier/xent_raw"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "logistic_regression/softmax_classifier/range/start"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_INT32
+        tensor_shape {
+        }
+        int_val: 0
+      }
+    }
+  }
+}
+node {
+  name: "logistic_regression/softmax_classifier/range/delta"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_INT32
+        tensor_shape {
+        }
+        int_val: 1
+      }
+    }
+  }
+}
+node {
+  name: "logistic_regression/softmax_classifier/range"
+  op: "Range"
+  input: "logistic_regression/softmax_classifier/range/start"
+  input: "logistic_regression/softmax_classifier/Rank"
+  input: "logistic_regression/softmax_classifier/range/delta"
+}
+node {
+  name: "logistic_regression/softmax_classifier/xent"
+  op: "Mean"
+  input: "logistic_regression/softmax_classifier/xent_raw"
+  input: "logistic_regression/softmax_classifier/range"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "keep_dims"
+    value {
+      b: false
+    }
+  }
+}
+node {
+  name: "logistic_regression/softmax_classifier/Softmax"
+  op: "Softmax"
+  input: "logistic_regression/softmax_classifier/xw_plus_b"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "ScalarSummary/tags"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_STRING
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_STRING
+        tensor_shape {
+        }
+        string_val: "loss"
+      }
+    }
+  }
+}
+node {
+  name: "ScalarSummary"
+  op: "ScalarSummary"
+  input: "ScalarSummary/tags"
+  input: "logistic_regression/softmax_classifier/xent"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "MergeSummary/MergeSummary"
+  op: "MergeSummary"
+  input: "HistogramSummary"
+  input: "HistogramSummary_1"
+  input: "logistic_regression/HistogramSummary"
+  input: "logistic_regression/HistogramSummary_1"
+  input: "logistic_regression/HistogramSummary_2"
+  input: "logistic_regression/HistogramSummary_3"
+  input: "ScalarSummary"
+  attr {
+    key: "N"
+    value {
+      i: 7
+    }
+  }
+}
+node {
+  name: "learning_rate/Initializer/Const"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_FLOAT
+        tensor_shape {
+        }
+        float_val: 0.0500000007451
+      }
+    }
+  }
+}
+node {
+  name: "learning_rate"
+  op: "Variable"
+  attr {
+    key: "container"
+    value {
+      s: ""
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "shape"
+    value {
+      shape {
+      }
+    }
+  }
+  attr {
+    key: "shared_name"
+    value {
+      s: ""
+    }
+  }
+}
+node {
+  name: "learning_rate/Assign"
+  op: "Assign"
+  input: "learning_rate"
+  input: "learning_rate/Initializer/Const"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "use_locking"
+    value {
+      b: true
+    }
+  }
+  attr {
+    key: "validate_shape"
+    value {
+      b: true
+    }
+  }
+}
+node {
+  name: "learning_rate/read"
+  op: "Identity"
+  input: "learning_rate"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "gradients/Shape"
+  op: "Shape"
+  input: "logistic_regression/softmax_classifier/xent"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "gradients/Const"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_FLOAT
+        tensor_shape {
+        }
+        float_val: 1.0
+      }
+    }
+  }
+}
+node {
+  name: "gradients/Fill"
+  op: "Fill"
+  input: "gradients/Shape"
+  input: "gradients/Const"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "gradients/logistic_regression/softmax_classifier/xent_grad/Shape"
+  op: "Shape"
+  input: "logistic_regression/softmax_classifier/xent_raw"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "gradients/logistic_regression/softmax_classifier/xent_grad/Rank"
+  op: "Rank"
+  input: "logistic_regression/softmax_classifier/xent_raw"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "gradients/logistic_regression/softmax_classifier/xent_grad/Shape_1"
+  op: "Shape"
+  input: "logistic_regression/softmax_classifier/range"
+  attr {
+    key: "T"
+    value {
+      type: DT_INT32
+    }
+  }
+}
+node {
+  name: "gradients/logistic_regression/softmax_classifier/xent_grad/range/start"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_INT32
+        tensor_shape {
+        }
+        int_val: 0
+      }
+    }
+  }
+}
+node {
+  name: "gradients/logistic_regression/softmax_classifier/xent_grad/range/delta"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_INT32
+        tensor_shape {
+        }
+        int_val: 1
+      }
+    }
+  }
+}
+node {
+  name: "gradients/logistic_regression/softmax_classifier/xent_grad/range"
+  op: "Range"
+  input: "gradients/logistic_regression/softmax_classifier/xent_grad/range/start"
+  input: "gradients/logistic_regression/softmax_classifier/xent_grad/Rank"
+  input: "gradients/logistic_regression/softmax_classifier/xent_grad/range/delta"
+}
+node {
+  name: "gradients/logistic_regression/softmax_classifier/xent_grad/Fill/value"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_INT32
+        tensor_shape {
+        }
+        int_val: 1
+      }
+    }
+  }
+}
+node {
+  name: "gradients/logistic_regression/softmax_classifier/xent_grad/Fill"
+  op: "Fill"
+  input: "gradients/logistic_regression/softmax_classifier/xent_grad/Shape_1"
+  input: "gradients/logistic_regression/softmax_classifier/xent_grad/Fill/value"
+  attr {
+    key: "T"
+    value {
+      type: DT_INT32
+    }
+  }
+}
+node {
+  name: "gradients/logistic_regression/softmax_classifier/xent_grad/DynamicStitch"
+  op: "DynamicStitch"
+  input: "gradients/logistic_regression/softmax_classifier/xent_grad/range"
+  input: "logistic_regression/softmax_classifier/range"
+  input: "gradients/logistic_regression/softmax_classifier/xent_grad/Shape"
+  input: "gradients/logistic_regression/softmax_classifier/xent_grad/Fill"
+  attr {
+    key: "N"
+    value {
+      i: 2
+    }
+  }
+  attr {
+    key: "T"
+    value {
+      type: DT_INT32
+    }
+  }
+}
+node {
+  name: "gradients/logistic_regression/softmax_classifier/xent_grad/floordiv"
+  op: "Div"
+  input: "gradients/logistic_regression/softmax_classifier/xent_grad/Shape"
+  input: "gradients/logistic_regression/softmax_classifier/xent_grad/DynamicStitch"
+  attr {
+    key: "T"
+    value {
+      type: DT_INT32
+    }
+  }
+}
+node {
+  name: "gradients/logistic_regression/softmax_classifier/xent_grad/Reshape"
+  op: "Reshape"
+  input: "gradients/Fill"
+  input: "gradients/logistic_regression/softmax_classifier/xent_grad/DynamicStitch"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "gradients/logistic_regression/softmax_classifier/xent_grad/Tile"
+  op: "Tile"
+  input: "gradients/logistic_regression/softmax_classifier/xent_grad/Reshape"
+  input: "gradients/logistic_regression/softmax_classifier/xent_grad/floordiv"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "gradients/logistic_regression/softmax_classifier/xent_grad/Shape_2"
+  op: "Shape"
+  input: "logistic_regression/softmax_classifier/xent_raw"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "gradients/logistic_regression/softmax_classifier/xent_grad/Shape_3"
+  op: "Shape"
+  input: "logistic_regression/softmax_classifier/xent"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "gradients/logistic_regression/softmax_classifier/xent_grad/Rank_1"
+  op: "Rank"
+  input: "gradients/logistic_regression/softmax_classifier/xent_grad/Shape_2"
+  attr {
+    key: "T"
+    value {
+      type: DT_INT32
+    }
+  }
+}
+node {
+  name: "gradients/logistic_regression/softmax_classifier/xent_grad/range_1/start"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_INT32
+        tensor_shape {
+        }
+        int_val: 0
+      }
+    }
+  }
+}
+node {
+  name: "gradients/logistic_regression/softmax_classifier/xent_grad/range_1/delta"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_INT32
+        tensor_shape {
+        }
+        int_val: 1
+      }
+    }
+  }
+}
+node {
+  name: "gradients/logistic_regression/softmax_classifier/xent_grad/range_1"
+  op: "Range"
+  input: "gradients/logistic_regression/softmax_classifier/xent_grad/range_1/start"
+  input: "gradients/logistic_regression/softmax_classifier/xent_grad/Rank_1"
+  input: "gradients/logistic_regression/softmax_classifier/xent_grad/range_1/delta"
+}
+node {
+  name: "gradients/logistic_regression/softmax_classifier/xent_grad/Prod"
+  op: "Prod"
+  input: "gradients/logistic_regression/softmax_classifier/xent_grad/Shape_2"
+  input: "gradients/logistic_regression/softmax_classifier/xent_grad/range_1"
+  attr {
+    key: "T"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "keep_dims"
+    value {
+      b: false
+    }
+  }
+}
+node {
+  name: "gradients/logistic_regression/softmax_classifier/xent_grad/Rank_2"
+  op: "Rank"
+  input: "gradients/logistic_regression/softmax_classifier/xent_grad/Shape_3"
+  attr {
+    key: "T"
+    value {
+      type: DT_INT32
+    }
+  }
+}
+node {
+  name: "gradients/logistic_regression/softmax_classifier/xent_grad/range_2/start"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_INT32
+        tensor_shape {
+        }
+        int_val: 0
+      }
+    }
+  }
+}
+node {
+  name: "gradients/logistic_regression/softmax_classifier/xent_grad/range_2/delta"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_INT32
+        tensor_shape {
+        }
+        int_val: 1
+      }
+    }
+  }
+}
+node {
+  name: "gradients/logistic_regression/softmax_classifier/xent_grad/range_2"
+  op: "Range"
+  input: "gradients/logistic_regression/softmax_classifier/xent_grad/range_2/start"
+  input: "gradients/logistic_regression/softmax_classifier/xent_grad/Rank_2"
+  input: "gradients/logistic_regression/softmax_classifier/xent_grad/range_2/delta"
+}
+node {
+  name: "gradients/logistic_regression/softmax_classifier/xent_grad/Prod_1"
+  op: "Prod"
+  input: "gradients/logistic_regression/softmax_classifier/xent_grad/Shape_3"
+  input: "gradients/logistic_regression/softmax_classifier/xent_grad/range_2"
+  attr {
+    key: "T"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "keep_dims"
+    value {
+      b: false
+    }
+  }
+}
+node {
+  name: "gradients/logistic_regression/softmax_classifier/xent_grad/floordiv_1"
+  op: "Div"
+  input: "gradients/logistic_regression/softmax_classifier/xent_grad/Prod"
+  input: "gradients/logistic_regression/softmax_classifier/xent_grad/Prod_1"
+  attr {
+    key: "T"
+    value {
+      type: DT_INT32
+    }
+  }
+}
+node {
+  name: "gradients/logistic_regression/softmax_classifier/xent_grad/Cast"
+  op: "Cast"
+  input: "gradients/logistic_regression/softmax_classifier/xent_grad/floordiv_1"
+  attr {
+    key: "DstT"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "SrcT"
+    value {
+      type: DT_INT32
+    }
+  }
+}
+node {
+  name: "gradients/logistic_regression/softmax_classifier/xent_grad/truediv"
+  op: "Div"
+  input: "gradients/logistic_regression/softmax_classifier/xent_grad/Tile"
+  input: "gradients/logistic_regression/softmax_classifier/xent_grad/Cast"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "gradients/zeros_like/ZerosLike"
+  op: "ZerosLike"
+  input: "logistic_regression/softmax_classifier/xent_raw:1"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "gradients/logistic_regression/softmax_classifier/xent_raw_grad/ExpandDims/dim"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_INT32
+        tensor_shape {
+        }
+        int_val: -1
+      }
+    }
+  }
+}
+node {
+  name: "gradients/logistic_regression/softmax_classifier/xent_raw_grad/ExpandDims"
+  op: "ExpandDims"
+  input: "gradients/logistic_regression/softmax_classifier/xent_grad/truediv"
+  input: "gradients/logistic_regression/softmax_classifier/xent_raw_grad/ExpandDims/dim"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "gradients/logistic_regression/softmax_classifier/xent_raw_grad/mul"
+  op: "Mul"
+  input: "gradients/logistic_regression/softmax_classifier/xent_raw_grad/ExpandDims"
+  input: "logistic_regression/softmax_classifier/xent_raw:1"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "gradients/logistic_regression/softmax_classifier/xw_plus_b_grad/Rank"
+  op: "Rank"
+  input: "gradients/logistic_regression/softmax_classifier/xent_raw_grad/mul"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "gradients/logistic_regression/softmax_classifier/xw_plus_b_grad/sub/y"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_INT32
+        tensor_shape {
+        }
+        int_val: 1
+      }
+    }
+  }
+}
+node {
+  name: "gradients/logistic_regression/softmax_classifier/xw_plus_b_grad/sub"
+  op: "Sub"
+  input: "gradients/logistic_regression/softmax_classifier/xw_plus_b_grad/Rank"
+  input: "gradients/logistic_regression/softmax_classifier/xw_plus_b_grad/sub/y"
+  attr {
+    key: "T"
+    value {
+      type: DT_INT32
+    }
+  }
+}
+node {
+  name: "gradients/logistic_regression/softmax_classifier/xw_plus_b_grad/range/start"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_INT32
+        tensor_shape {
+        }
+        int_val: 0
+      }
+    }
+  }
+}
+node {
+  name: "gradients/logistic_regression/softmax_classifier/xw_plus_b_grad/range/delta"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_INT32
+        tensor_shape {
+        }
+        int_val: 1
+      }
+    }
+  }
+}
+node {
+  name: "gradients/logistic_regression/softmax_classifier/xw_plus_b_grad/range"
+  op: "Range"
+  input: "gradients/logistic_regression/softmax_classifier/xw_plus_b_grad/range/start"
+  input: "gradients/logistic_regression/softmax_classifier/xw_plus_b_grad/sub"
+  input: "gradients/logistic_regression/softmax_classifier/xw_plus_b_grad/range/delta"
+}
+node {
+  name: "gradients/logistic_regression/softmax_classifier/xw_plus_b_grad/Sum"
+  op: "Sum"
+  input: "gradients/logistic_regression/softmax_classifier/xent_raw_grad/mul"
+  input: "gradients/logistic_regression/softmax_classifier/xw_plus_b_grad/range"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "keep_dims"
+    value {
+      b: false
+    }
+  }
+}
+node {
+  name: "gradients/logistic_regression/softmax_classifier/xw_plus_b/MatMul_grad/MatMul"
+  op: "MatMul"
+  input: "gradients/logistic_regression/softmax_classifier/xent_raw_grad/mul"
+  input: "logistic_regression/weights/read"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "transpose_a"
+    value {
+      b: false
+    }
+  }
+  attr {
+    key: "transpose_b"
+    value {
+      b: true
+    }
+  }
+}
+node {
+  name: "gradients/logistic_regression/softmax_classifier/xw_plus_b/MatMul_grad/MatMul_1"
+  op: "MatMul"
+  input: "dnn/layer2/Relu"
+  input: "gradients/logistic_regression/softmax_classifier/xent_raw_grad/mul"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "transpose_a"
+    value {
+      b: true
+    }
+  }
+  attr {
+    key: "transpose_b"
+    value {
+      b: false
+    }
+  }
+}
+node {
+  name: "gradients/dnn/layer2/Relu_grad/ReluGrad"
+  op: "ReluGrad"
+  input: "gradients/logistic_regression/softmax_classifier/xw_plus_b/MatMul_grad/MatMul"
+  input: "dnn/layer2/Relu"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "gradients/dnn/layer2/add_grad/Shape"
+  op: "Shape"
+  input: "dnn/layer2/Linear/MatMul"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "gradients/dnn/layer2/add_grad/Shape_1"
+  op: "Shape"
+  input: "dnn/layer2/Linear/Bias/read"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "gradients/dnn/layer2/add_grad/BroadcastGradientArgs"
+  op: "BroadcastGradientArgs"
+  input: "gradients/dnn/layer2/add_grad/Shape"
+  input: "gradients/dnn/layer2/add_grad/Shape_1"
+}
+node {
+  name: "gradients/dnn/layer2/add_grad/Sum"
+  op: "Sum"
+  input: "gradients/dnn/layer2/Relu_grad/ReluGrad"
+  input: "gradients/dnn/layer2/add_grad/BroadcastGradientArgs"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "keep_dims"
+    value {
+      b: false
+    }
+  }
+}
+node {
+  name: "gradients/dnn/layer2/add_grad/Reshape"
+  op: "Reshape"
+  input: "gradients/dnn/layer2/add_grad/Sum"
+  input: "gradients/dnn/layer2/add_grad/Shape"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "gradients/dnn/layer2/add_grad/Sum_1"
+  op: "Sum"
+  input: "gradients/dnn/layer2/Relu_grad/ReluGrad"
+  input: "gradients/dnn/layer2/add_grad/BroadcastGradientArgs:1"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "keep_dims"
+    value {
+      b: false
+    }
+  }
+}
+node {
+  name: "gradients/dnn/layer2/add_grad/Reshape_1"
+  op: "Reshape"
+  input: "gradients/dnn/layer2/add_grad/Sum_1"
+  input: "gradients/dnn/layer2/add_grad/Shape_1"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "gradients/dnn/layer2/Linear/MatMul_grad/MatMul"
+  op: "MatMul"
+  input: "gradients/dnn/layer2/add_grad/Reshape"
+  input: "dnn/layer2/Linear/Matrix/read"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "transpose_a"
+    value {
+      b: false
+    }
+  }
+  attr {
+    key: "transpose_b"
+    value {
+      b: true
+    }
+  }
+}
+node {
+  name: "gradients/dnn/layer2/Linear/MatMul_grad/MatMul_1"
+  op: "MatMul"
+  input: "dnn/layer1/Relu"
+  input: "gradients/dnn/layer2/add_grad/Reshape"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "transpose_a"
+    value {
+      b: true
+    }
+  }
+  attr {
+    key: "transpose_b"
+    value {
+      b: false
+    }
+  }
+}
+node {
+  name: "gradients/dnn/layer1/Relu_grad/ReluGrad"
+  op: "ReluGrad"
+  input: "gradients/dnn/layer2/Linear/MatMul_grad/MatMul"
+  input: "dnn/layer1/Relu"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "gradients/dnn/layer1/add_grad/Shape"
+  op: "Shape"
+  input: "dnn/layer1/Linear/MatMul"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "gradients/dnn/layer1/add_grad/Shape_1"
+  op: "Shape"
+  input: "dnn/layer1/Linear/Bias/read"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "gradients/dnn/layer1/add_grad/BroadcastGradientArgs"
+  op: "BroadcastGradientArgs"
+  input: "gradients/dnn/layer1/add_grad/Shape"
+  input: "gradients/dnn/layer1/add_grad/Shape_1"
+}
+node {
+  name: "gradients/dnn/layer1/add_grad/Sum"
+  op: "Sum"
+  input: "gradients/dnn/layer1/Relu_grad/ReluGrad"
+  input: "gradients/dnn/layer1/add_grad/BroadcastGradientArgs"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "keep_dims"
+    value {
+      b: false
+    }
+  }
+}
+node {
+  name: "gradients/dnn/layer1/add_grad/Reshape"
+  op: "Reshape"
+  input: "gradients/dnn/layer1/add_grad/Sum"
+  input: "gradients/dnn/layer1/add_grad/Shape"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "gradients/dnn/layer1/add_grad/Sum_1"
+  op: "Sum"
+  input: "gradients/dnn/layer1/Relu_grad/ReluGrad"
+  input: "gradients/dnn/layer1/add_grad/BroadcastGradientArgs:1"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "keep_dims"
+    value {
+      b: false
+    }
+  }
+}
+node {
+  name: "gradients/dnn/layer1/add_grad/Reshape_1"
+  op: "Reshape"
+  input: "gradients/dnn/layer1/add_grad/Sum_1"
+  input: "gradients/dnn/layer1/add_grad/Shape_1"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "gradients/dnn/layer1/Linear/MatMul_grad/MatMul"
+  op: "MatMul"
+  input: "gradients/dnn/layer1/add_grad/Reshape"
+  input: "dnn/layer1/Linear/Matrix/read"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "transpose_a"
+    value {
+      b: false
+    }
+  }
+  attr {
+    key: "transpose_b"
+    value {
+      b: true
+    }
+  }
+}
+node {
+  name: "gradients/dnn/layer1/Linear/MatMul_grad/MatMul_1"
+  op: "MatMul"
+  input: "dnn/layer0/Relu"
+  input: "gradients/dnn/layer1/add_grad/Reshape"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "transpose_a"
+    value {
+      b: true
+    }
+  }
+  attr {
+    key: "transpose_b"
+    value {
+      b: false
+    }
+  }
+}
+node {
+  name: "gradients/dnn/layer0/Relu_grad/ReluGrad"
+  op: "ReluGrad"
+  input: "gradients/dnn/layer1/Linear/MatMul_grad/MatMul"
+  input: "dnn/layer0/Relu"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "gradients/dnn/layer0/add_grad/Shape"
+  op: "Shape"
+  input: "dnn/layer0/Linear/MatMul"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "gradients/dnn/layer0/add_grad/Shape_1"
+  op: "Shape"
+  input: "dnn/layer0/Linear/Bias/read"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "gradients/dnn/layer0/add_grad/BroadcastGradientArgs"
+  op: "BroadcastGradientArgs"
+  input: "gradients/dnn/layer0/add_grad/Shape"
+  input: "gradients/dnn/layer0/add_grad/Shape_1"
+}
+node {
+  name: "gradients/dnn/layer0/add_grad/Sum"
+  op: "Sum"
+  input: "gradients/dnn/layer0/Relu_grad/ReluGrad"
+  input: "gradients/dnn/layer0/add_grad/BroadcastGradientArgs"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "keep_dims"
+    value {
+      b: false
+    }
+  }
+}
+node {
+  name: "gradients/dnn/layer0/add_grad/Reshape"
+  op: "Reshape"
+  input: "gradients/dnn/layer0/add_grad/Sum"
+  input: "gradients/dnn/layer0/add_grad/Shape"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "gradients/dnn/layer0/add_grad/Sum_1"
+  op: "Sum"
+  input: "gradients/dnn/layer0/Relu_grad/ReluGrad"
+  input: "gradients/dnn/layer0/add_grad/BroadcastGradientArgs:1"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "keep_dims"
+    value {
+      b: false
+    }
+  }
+}
+node {
+  name: "gradients/dnn/layer0/add_grad/Reshape_1"
+  op: "Reshape"
+  input: "gradients/dnn/layer0/add_grad/Sum_1"
+  input: "gradients/dnn/layer0/add_grad/Shape_1"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "gradients/dnn/layer0/Linear/MatMul_grad/MatMul"
+  op: "MatMul"
+  input: "gradients/dnn/layer0/add_grad/Reshape"
+  input: "dnn/layer0/Linear/Matrix/read"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "transpose_a"
+    value {
+      b: false
+    }
+  }
+  attr {
+    key: "transpose_b"
+    value {
+      b: true
+    }
+  }
+}
+node {
+  name: "gradients/dnn/layer0/Linear/MatMul_grad/MatMul_1"
+  op: "MatMul"
+  input: "input"
+  input: "gradients/dnn/layer0/add_grad/Reshape"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "transpose_a"
+    value {
+      b: true
+    }
+  }
+  attr {
+    key: "transpose_b"
+    value {
+      b: false
+    }
+  }
+}
+node {
+  name: "global_norm/mul"
+  op: "Mul"
+  input: "gradients/dnn/layer0/Linear/MatMul_grad/MatMul_1"
+  input: "gradients/dnn/layer0/Linear/MatMul_grad/MatMul_1"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "global_norm/Rank"
+  op: "Rank"
+  input: "global_norm/mul"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "global_norm/range/start"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_INT32
+        tensor_shape {
+        }
+        int_val: 0
+      }
+    }
+  }
+}
+node {
+  name: "global_norm/range/delta"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_INT32
+        tensor_shape {
+        }
+        int_val: 1
+      }
+    }
+  }
+}
+node {
+  name: "global_norm/range"
+  op: "Range"
+  input: "global_norm/range/start"
+  input: "global_norm/Rank"
+  input: "global_norm/range/delta"
+}
+node {
+  name: "global_norm/Sum"
+  op: "Sum"
+  input: "global_norm/mul"
+  input: "global_norm/range"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "keep_dims"
+    value {
+      b: false
+    }
+  }
+}
+node {
+  name: "global_norm/mul_1"
+  op: "Mul"
+  input: "gradients/dnn/layer0/add_grad/Reshape_1"
+  input: "gradients/dnn/layer0/add_grad/Reshape_1"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "global_norm/Rank_1"
+  op: "Rank"
+  input: "global_norm/mul_1"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "global_norm/range_1/start"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_INT32
+        tensor_shape {
+        }
+        int_val: 0
+      }
+    }
+  }
+}
+node {
+  name: "global_norm/range_1/delta"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_INT32
+        tensor_shape {
+        }
+        int_val: 1
+      }
+    }
+  }
+}
+node {
+  name: "global_norm/range_1"
+  op: "Range"
+  input: "global_norm/range_1/start"
+  input: "global_norm/Rank_1"
+  input: "global_norm/range_1/delta"
+}
+node {
+  name: "global_norm/Sum_1"
+  op: "Sum"
+  input: "global_norm/mul_1"
+  input: "global_norm/range_1"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "keep_dims"
+    value {
+      b: false
+    }
+  }
+}
+node {
+  name: "global_norm/mul_2"
+  op: "Mul"
+  input: "gradients/dnn/layer1/Linear/MatMul_grad/MatMul_1"
+  input: "gradients/dnn/layer1/Linear/MatMul_grad/MatMul_1"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "global_norm/Rank_2"
+  op: "Rank"
+  input: "global_norm/mul_2"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "global_norm/range_2/start"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_INT32
+        tensor_shape {
+        }
+        int_val: 0
+      }
+    }
+  }
+}
+node {
+  name: "global_norm/range_2/delta"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_INT32
+        tensor_shape {
+        }
+        int_val: 1
+      }
+    }
+  }
+}
+node {
+  name: "global_norm/range_2"
+  op: "Range"
+  input: "global_norm/range_2/start"
+  input: "global_norm/Rank_2"
+  input: "global_norm/range_2/delta"
+}
+node {
+  name: "global_norm/Sum_2"
+  op: "Sum"
+  input: "global_norm/mul_2"
+  input: "global_norm/range_2"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "keep_dims"
+    value {
+      b: false
+    }
+  }
+}
+node {
+  name: "global_norm/mul_3"
+  op: "Mul"
+  input: "gradients/dnn/layer1/add_grad/Reshape_1"
+  input: "gradients/dnn/layer1/add_grad/Reshape_1"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "global_norm/Rank_3"
+  op: "Rank"
+  input: "global_norm/mul_3"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "global_norm/range_3/start"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_INT32
+        tensor_shape {
+        }
+        int_val: 0
+      }
+    }
+  }
+}
+node {
+  name: "global_norm/range_3/delta"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_INT32
+        tensor_shape {
+        }
+        int_val: 1
+      }
+    }
+  }
+}
+node {
+  name: "global_norm/range_3"
+  op: "Range"
+  input: "global_norm/range_3/start"
+  input: "global_norm/Rank_3"
+  input: "global_norm/range_3/delta"
+}
+node {
+  name: "global_norm/Sum_3"
+  op: "Sum"
+  input: "global_norm/mul_3"
+  input: "global_norm/range_3"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "keep_dims"
+    value {
+      b: false
+    }
+  }
+}
+node {
+  name: "global_norm/mul_4"
+  op: "Mul"
+  input: "gradients/dnn/layer2/Linear/MatMul_grad/MatMul_1"
+  input: "gradients/dnn/layer2/Linear/MatMul_grad/MatMul_1"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "global_norm/Rank_4"
+  op: "Rank"
+  input: "global_norm/mul_4"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "global_norm/range_4/start"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_INT32
+        tensor_shape {
+        }
+        int_val: 0
+      }
+    }
+  }
+}
+node {
+  name: "global_norm/range_4/delta"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_INT32
+        tensor_shape {
+        }
+        int_val: 1
+      }
+    }
+  }
+}
+node {
+  name: "global_norm/range_4"
+  op: "Range"
+  input: "global_norm/range_4/start"
+  input: "global_norm/Rank_4"
+  input: "global_norm/range_4/delta"
+}
+node {
+  name: "global_norm/Sum_4"
+  op: "Sum"
+  input: "global_norm/mul_4"
+  input: "global_norm/range_4"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "keep_dims"
+    value {
+      b: false
+    }
+  }
+}
+node {
+  name: "global_norm/mul_5"
+  op: "Mul"
+  input: "gradients/dnn/layer2/add_grad/Reshape_1"
+  input: "gradients/dnn/layer2/add_grad/Reshape_1"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "global_norm/Rank_5"
+  op: "Rank"
+  input: "global_norm/mul_5"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "global_norm/range_5/start"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_INT32
+        tensor_shape {
+        }
+        int_val: 0
+      }
+    }
+  }
+}
+node {
+  name: "global_norm/range_5/delta"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_INT32
+        tensor_shape {
+        }
+        int_val: 1
+      }
+    }
+  }
+}
+node {
+  name: "global_norm/range_5"
+  op: "Range"
+  input: "global_norm/range_5/start"
+  input: "global_norm/Rank_5"
+  input: "global_norm/range_5/delta"
+}
+node {
+  name: "global_norm/Sum_5"
+  op: "Sum"
+  input: "global_norm/mul_5"
+  input: "global_norm/range_5"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "keep_dims"
+    value {
+      b: false
+    }
+  }
+}
+node {
+  name: "global_norm/mul_6"
+  op: "Mul"
+  input: "gradients/logistic_regression/softmax_classifier/xw_plus_b/MatMul_grad/MatMul_1"
+  input: "gradients/logistic_regression/softmax_classifier/xw_plus_b/MatMul_grad/MatMul_1"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "global_norm/Rank_6"
+  op: "Rank"
+  input: "global_norm/mul_6"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "global_norm/range_6/start"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_INT32
+        tensor_shape {
+        }
+        int_val: 0
+      }
+    }
+  }
+}
+node {
+  name: "global_norm/range_6/delta"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_INT32
+        tensor_shape {
+        }
+        int_val: 1
+      }
+    }
+  }
+}
+node {
+  name: "global_norm/range_6"
+  op: "Range"
+  input: "global_norm/range_6/start"
+  input: "global_norm/Rank_6"
+  input: "global_norm/range_6/delta"
+}
+node {
+  name: "global_norm/Sum_6"
+  op: "Sum"
+  input: "global_norm/mul_6"
+  input: "global_norm/range_6"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "keep_dims"
+    value {
+      b: false
+    }
+  }
+}
+node {
+  name: "global_norm/mul_7"
+  op: "Mul"
+  input: "gradients/logistic_regression/softmax_classifier/xw_plus_b_grad/Sum"
+  input: "gradients/logistic_regression/softmax_classifier/xw_plus_b_grad/Sum"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "global_norm/Rank_7"
+  op: "Rank"
+  input: "global_norm/mul_7"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "global_norm/range_7/start"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_INT32
+        tensor_shape {
+        }
+        int_val: 0
+      }
+    }
+  }
+}
+node {
+  name: "global_norm/range_7/delta"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_INT32
+        tensor_shape {
+        }
+        int_val: 1
+      }
+    }
+  }
+}
+node {
+  name: "global_norm/range_7"
+  op: "Range"
+  input: "global_norm/range_7/start"
+  input: "global_norm/Rank_7"
+  input: "global_norm/range_7/delta"
+}
+node {
+  name: "global_norm/Sum_7"
+  op: "Sum"
+  input: "global_norm/mul_7"
+  input: "global_norm/range_7"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "keep_dims"
+    value {
+      b: false
+    }
+  }
+}
+node {
+  name: "global_norm/pack"
+  op: "Pack"
+  input: "global_norm/Sum"
+  input: "global_norm/Sum_1"
+  input: "global_norm/Sum_2"
+  input: "global_norm/Sum_3"
+  input: "global_norm/Sum_4"
+  input: "global_norm/Sum_5"
+  input: "global_norm/Sum_6"
+  input: "global_norm/Sum_7"
+  attr {
+    key: "N"
+    value {
+      i: 8
+    }
+  }
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "global_norm/Rank_8"
+  op: "Rank"
+  input: "global_norm/pack"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "global_norm/range_8/start"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_INT32
+        tensor_shape {
+        }
+        int_val: 0
+      }
+    }
+  }
+}
+node {
+  name: "global_norm/range_8/delta"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_INT32
+        tensor_shape {
+        }
+        int_val: 1
+      }
+    }
+  }
+}
+node {
+  name: "global_norm/range_8"
+  op: "Range"
+  input: "global_norm/range_8/start"
+  input: "global_norm/Rank_8"
+  input: "global_norm/range_8/delta"
+}
+node {
+  name: "global_norm/Sum_8"
+  op: "Sum"
+  input: "global_norm/pack"
+  input: "global_norm/range_8"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "keep_dims"
+    value {
+      b: false
+    }
+  }
+}
+node {
+  name: "global_norm/global_norm"
+  op: "Sqrt"
+  input: "global_norm/Sum_8"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "clip_by_global_norm/truediv/x"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_FLOAT
+        tensor_shape {
+        }
+        float_val: 1.0
+      }
+    }
+  }
+}
+node {
+  name: "clip_by_global_norm/truediv"
+  op: "Div"
+  input: "clip_by_global_norm/truediv/x"
+  input: "global_norm/global_norm"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "clip_by_global_norm/Const"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_FLOAT
+        tensor_shape {
+        }
+        float_val: 0.20000000298
+      }
+    }
+  }
+}
+node {
+  name: "clip_by_global_norm/Minimum"
+  op: "Minimum"
+  input: "clip_by_global_norm/truediv"
+  input: "clip_by_global_norm/Const"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "clip_by_global_norm/mul/x"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_FLOAT
+        tensor_shape {
+        }
+        float_val: 5.0
+      }
+    }
+  }
+}
+node {
+  name: "clip_by_global_norm/mul"
+  op: "Mul"
+  input: "clip_by_global_norm/mul/x"
+  input: "clip_by_global_norm/Minimum"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "clip_by_global_norm/mul_1"
+  op: "Mul"
+  input: "gradients/dnn/layer0/Linear/MatMul_grad/MatMul_1"
+  input: "clip_by_global_norm/mul"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "clip_by_global_norm/clip_by_global_norm/_0"
+  op: "Identity"
+  input: "clip_by_global_norm/mul_1"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "clip_by_global_norm/mul_2"
+  op: "Mul"
+  input: "gradients/dnn/layer0/add_grad/Reshape_1"
+  input: "clip_by_global_norm/mul"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "clip_by_global_norm/clip_by_global_norm/_1"
+  op: "Identity"
+  input: "clip_by_global_norm/mul_2"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "clip_by_global_norm/mul_3"
+  op: "Mul"
+  input: "gradients/dnn/layer1/Linear/MatMul_grad/MatMul_1"
+  input: "clip_by_global_norm/mul"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "clip_by_global_norm/clip_by_global_norm/_2"
+  op: "Identity"
+  input: "clip_by_global_norm/mul_3"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "clip_by_global_norm/mul_4"
+  op: "Mul"
+  input: "gradients/dnn/layer1/add_grad/Reshape_1"
+  input: "clip_by_global_norm/mul"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "clip_by_global_norm/clip_by_global_norm/_3"
+  op: "Identity"
+  input: "clip_by_global_norm/mul_4"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "clip_by_global_norm/mul_5"
+  op: "Mul"
+  input: "gradients/dnn/layer2/Linear/MatMul_grad/MatMul_1"
+  input: "clip_by_global_norm/mul"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "clip_by_global_norm/clip_by_global_norm/_4"
+  op: "Identity"
+  input: "clip_by_global_norm/mul_5"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "clip_by_global_norm/mul_6"
+  op: "Mul"
+  input: "gradients/dnn/layer2/add_grad/Reshape_1"
+  input: "clip_by_global_norm/mul"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "clip_by_global_norm/clip_by_global_norm/_5"
+  op: "Identity"
+  input: "clip_by_global_norm/mul_6"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "clip_by_global_norm/mul_7"
+  op: "Mul"
+  input: "gradients/logistic_regression/softmax_classifier/xw_plus_b/MatMul_grad/MatMul_1"
+  input: "clip_by_global_norm/mul"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "clip_by_global_norm/clip_by_global_norm/_6"
+  op: "Identity"
+  input: "clip_by_global_norm/mul_7"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "clip_by_global_norm/mul_8"
+  op: "Mul"
+  input: "gradients/logistic_regression/softmax_classifier/xw_plus_b_grad/Sum"
+  input: "clip_by_global_norm/mul"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "clip_by_global_norm/clip_by_global_norm/_7"
+  op: "Identity"
+  input: "clip_by_global_norm/mul_8"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "train/update_dnn/layer0/Linear/Matrix/ApplyGradientDescent"
+  op: "ApplyGradientDescent"
+  input: "dnn/layer0/Linear/Matrix"
+  input: "learning_rate/read"
+  input: "clip_by_global_norm/clip_by_global_norm/_0"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "use_locking"
+    value {
+      b: false
+    }
+  }
+}
+node {
+  name: "train/update_dnn/layer0/Linear/Bias/ApplyGradientDescent"
+  op: "ApplyGradientDescent"
+  input: "dnn/layer0/Linear/Bias"
+  input: "learning_rate/read"
+  input: "clip_by_global_norm/clip_by_global_norm/_1"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "use_locking"
+    value {
+      b: false
+    }
+  }
+}
+node {
+  name: "train/update_dnn/layer1/Linear/Matrix/ApplyGradientDescent"
+  op: "ApplyGradientDescent"
+  input: "dnn/layer1/Linear/Matrix"
+  input: "learning_rate/read"
+  input: "clip_by_global_norm/clip_by_global_norm/_2"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "use_locking"
+    value {
+      b: false
+    }
+  }
+}
+node {
+  name: "train/update_dnn/layer1/Linear/Bias/ApplyGradientDescent"
+  op: "ApplyGradientDescent"
+  input: "dnn/layer1/Linear/Bias"
+  input: "learning_rate/read"
+  input: "clip_by_global_norm/clip_by_global_norm/_3"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "use_locking"
+    value {
+      b: false
+    }
+  }
+}
+node {
+  name: "train/update_dnn/layer2/Linear/Matrix/ApplyGradientDescent"
+  op: "ApplyGradientDescent"
+  input: "dnn/layer2/Linear/Matrix"
+  input: "learning_rate/read"
+  input: "clip_by_global_norm/clip_by_global_norm/_4"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "use_locking"
+    value {
+      b: false
+    }
+  }
+}
+node {
+  name: "train/update_dnn/layer2/Linear/Bias/ApplyGradientDescent"
+  op: "ApplyGradientDescent"
+  input: "dnn/layer2/Linear/Bias"
+  input: "learning_rate/read"
+  input: "clip_by_global_norm/clip_by_global_norm/_5"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "use_locking"
+    value {
+      b: false
+    }
+  }
+}
+node {
+  name: "train/update_logistic_regression/weights/ApplyGradientDescent"
+  op: "ApplyGradientDescent"
+  input: "logistic_regression/weights"
+  input: "learning_rate/read"
+  input: "clip_by_global_norm/clip_by_global_norm/_6"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "use_locking"
+    value {
+      b: false
+    }
+  }
+}
+node {
+  name: "train/update_logistic_regression/bias/ApplyGradientDescent"
+  op: "ApplyGradientDescent"
+  input: "logistic_regression/bias"
+  input: "learning_rate/read"
+  input: "clip_by_global_norm/clip_by_global_norm/_7"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "use_locking"
+    value {
+      b: false
+    }
+  }
+}
+node {
+  name: "train/update"
+  op: "NoOp"
+  input: "^train/update_dnn/layer0/Linear/Matrix/ApplyGradientDescent"
+  input: "^train/update_dnn/layer0/Linear/Bias/ApplyGradientDescent"
+  input: "^train/update_dnn/layer1/Linear/Matrix/ApplyGradientDescent"
+  input: "^train/update_dnn/layer1/Linear/Bias/ApplyGradientDescent"
+  input: "^train/update_dnn/layer2/Linear/Matrix/ApplyGradientDescent"
+  input: "^train/update_dnn/layer2/Linear/Bias/ApplyGradientDescent"
+  input: "^train/update_logistic_regression/weights/ApplyGradientDescent"
+  input: "^train/update_logistic_regression/bias/ApplyGradientDescent"
+}
+node {
+  name: "train/value"
+  op: "Const"
+  input: "^train/update"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_INT32
+        tensor_shape {
+        }
+        int_val: 1
+      }
+    }
+  }
+}
+node {
+  name: "train"
+  op: "AssignAdd"
+  input: "global_step"
+  input: "train/value"
+  attr {
+    key: "T"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "use_locking"
+    value {
+      b: false
+    }
+  }
+}
+node {
+  name: "group_deps"
+  op: "NoOp"
+  input: "^train"
+}
+node {
+  name: "init"
+  op: "NoOp"
+  input: "^global_step/Assign"
+  input: "^dnn/layer0/Linear/Matrix/Assign"
+  input: "^dnn/layer0/Linear/Bias/Assign"
+  input: "^dnn/layer1/Linear/Matrix/Assign"
+  input: "^dnn/layer1/Linear/Bias/Assign"
+  input: "^dnn/layer2/Linear/Matrix/Assign"
+  input: "^dnn/layer2/Linear/Bias/Assign"
+  input: "^logistic_regression/weights/Assign"
+  input: "^logistic_regression/bias/Assign"
+  input: "^learning_rate/Assign"
+}
+node {
+  name: "save/Const"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_STRING
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_STRING
+        tensor_shape {
+        }
+        string_val: "model"
+      }
+    }
+  }
+}
+node {
+  name: "save/save/tensor_names"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_STRING
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_STRING
+        tensor_shape {
+          dim {
+            size: 10
+          }
+        }
+        string_val: "dnn/layer0/Linear/Bias"
+        string_val: "dnn/layer0/Linear/Matrix"
+        string_val: "dnn/layer1/Linear/Bias"
+        string_val: "dnn/layer1/Linear/Matrix"
+        string_val: "dnn/layer2/Linear/Bias"
+        string_val: "dnn/layer2/Linear/Matrix"
+        string_val: "global_step"
+        string_val: "learning_rate"
+        string_val: "logistic_regression/bias"
+        string_val: "logistic_regression/weights"
+      }
+    }
+  }
+}
+node {
+  name: "save/save/shapes_and_slices"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_STRING
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_STRING
+        tensor_shape {
+          dim {
+            size: 10
+          }
+        }
+        string_val: ""
+        string_val: ""
+        string_val: ""
+        string_val: ""
+        string_val: ""
+        string_val: ""
+        string_val: ""
+        string_val: ""
+        string_val: ""
+        string_val: ""
+      }
+    }
+  }
+}
+node {
+  name: "save/save"
+  op: "SaveSlices"
+  input: "save/Const"
+  input: "save/save/tensor_names"
+  input: "save/save/shapes_and_slices"
+  input: "dnn/layer0/Linear/Bias"
+  input: "dnn/layer0/Linear/Matrix"
+  input: "dnn/layer1/Linear/Bias"
+  input: "dnn/layer1/Linear/Matrix"
+  input: "dnn/layer2/Linear/Bias"
+  input: "dnn/layer2/Linear/Matrix"
+  input: "global_step"
+  input: "learning_rate"
+  input: "logistic_regression/bias"
+  input: "logistic_regression/weights"
+  attr {
+    key: "T"
+    value {
+      list {
+        type: DT_FLOAT
+        type: DT_FLOAT
+        type: DT_FLOAT
+        type: DT_FLOAT
+        type: DT_FLOAT
+        type: DT_FLOAT
+        type: DT_INT32
+        type: DT_FLOAT
+        type: DT_FLOAT
+        type: DT_FLOAT
+      }
+    }
+  }
+}
+node {
+  name: "save/control_dependency"
+  op: "Identity"
+  input: "save/Const"
+  input: "^save/save"
+  attr {
+    key: "T"
+    value {
+      type: DT_STRING
+    }
+  }
+}
+node {
+  name: "save/restore_slice/tensor_name"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_STRING
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_STRING
+        tensor_shape {
+        }
+        string_val: "dnn/layer0/Linear/Bias"
+      }
+    }
+  }
+}
+node {
+  name: "save/restore_slice/shape_and_slice"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_STRING
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_STRING
+        tensor_shape {
+        }
+        string_val: ""
+      }
+    }
+  }
+}
+node {
+  name: "save/restore_slice"
+  op: "RestoreSlice"
+  input: "save/Const"
+  input: "save/restore_slice/tensor_name"
+  input: "save/restore_slice/shape_and_slice"
+  attr {
+    key: "dt"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "preferred_shard"
+    value {
+      i: -1
+    }
+  }
+}
+node {
+  name: "save/Assign"
+  op: "Assign"
+  input: "dnn/layer0/Linear/Bias"
+  input: "save/restore_slice"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "use_locking"
+    value {
+      b: true
+    }
+  }
+  attr {
+    key: "validate_shape"
+    value {
+      b: true
+    }
+  }
+}
+node {
+  name: "save/restore_slice_1/tensor_name"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_STRING
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_STRING
+        tensor_shape {
+        }
+        string_val: "dnn/layer0/Linear/Matrix"
+      }
+    }
+  }
+}
+node {
+  name: "save/restore_slice_1/shape_and_slice"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_STRING
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_STRING
+        tensor_shape {
+        }
+        string_val: ""
+      }
+    }
+  }
+}
+node {
+  name: "save/restore_slice_1"
+  op: "RestoreSlice"
+  input: "save/Const"
+  input: "save/restore_slice_1/tensor_name"
+  input: "save/restore_slice_1/shape_and_slice"
+  attr {
+    key: "dt"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "preferred_shard"
+    value {
+      i: -1
+    }
+  }
+}
+node {
+  name: "save/Assign_1"
+  op: "Assign"
+  input: "dnn/layer0/Linear/Matrix"
+  input: "save/restore_slice_1"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "use_locking"
+    value {
+      b: true
+    }
+  }
+  attr {
+    key: "validate_shape"
+    value {
+      b: true
+    }
+  }
+}
+node {
+  name: "save/restore_slice_2/tensor_name"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_STRING
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_STRING
+        tensor_shape {
+        }
+        string_val: "dnn/layer1/Linear/Bias"
+      }
+    }
+  }
+}
+node {
+  name: "save/restore_slice_2/shape_and_slice"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_STRING
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_STRING
+        tensor_shape {
+        }
+        string_val: ""
+      }
+    }
+  }
+}
+node {
+  name: "save/restore_slice_2"
+  op: "RestoreSlice"
+  input: "save/Const"
+  input: "save/restore_slice_2/tensor_name"
+  input: "save/restore_slice_2/shape_and_slice"
+  attr {
+    key: "dt"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "preferred_shard"
+    value {
+      i: -1
+    }
+  }
+}
+node {
+  name: "save/Assign_2"
+  op: "Assign"
+  input: "dnn/layer1/Linear/Bias"
+  input: "save/restore_slice_2"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "use_locking"
+    value {
+      b: true
+    }
+  }
+  attr {
+    key: "validate_shape"
+    value {
+      b: true
+    }
+  }
+}
+node {
+  name: "save/restore_slice_3/tensor_name"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_STRING
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_STRING
+        tensor_shape {
+        }
+        string_val: "dnn/layer1/Linear/Matrix"
+      }
+    }
+  }
+}
+node {
+  name: "save/restore_slice_3/shape_and_slice"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_STRING
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_STRING
+        tensor_shape {
+        }
+        string_val: ""
+      }
+    }
+  }
+}
+node {
+  name: "save/restore_slice_3"
+  op: "RestoreSlice"
+  input: "save/Const"
+  input: "save/restore_slice_3/tensor_name"
+  input: "save/restore_slice_3/shape_and_slice"
+  attr {
+    key: "dt"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "preferred_shard"
+    value {
+      i: -1
+    }
+  }
+}
+node {
+  name: "save/Assign_3"
+  op: "Assign"
+  input: "dnn/layer1/Linear/Matrix"
+  input: "save/restore_slice_3"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "use_locking"
+    value {
+      b: true
+    }
+  }
+  attr {
+    key: "validate_shape"
+    value {
+      b: true
+    }
+  }
+}
+node {
+  name: "save/restore_slice_4/tensor_name"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_STRING
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_STRING
+        tensor_shape {
+        }
+        string_val: "dnn/layer2/Linear/Bias"
+      }
+    }
+  }
+}
+node {
+  name: "save/restore_slice_4/shape_and_slice"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_STRING
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_STRING
+        tensor_shape {
+        }
+        string_val: ""
+      }
+    }
+  }
+}
+node {
+  name: "save/restore_slice_4"
+  op: "RestoreSlice"
+  input: "save/Const"
+  input: "save/restore_slice_4/tensor_name"
+  input: "save/restore_slice_4/shape_and_slice"
+  attr {
+    key: "dt"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "preferred_shard"
+    value {
+      i: -1
+    }
+  }
+}
+node {
+  name: "save/Assign_4"
+  op: "Assign"
+  input: "dnn/layer2/Linear/Bias"
+  input: "save/restore_slice_4"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "use_locking"
+    value {
+      b: true
+    }
+  }
+  attr {
+    key: "validate_shape"
+    value {
+      b: true
+    }
+  }
+}
+node {
+  name: "save/restore_slice_5/tensor_name"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_STRING
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_STRING
+        tensor_shape {
+        }
+        string_val: "dnn/layer2/Linear/Matrix"
+      }
+    }
+  }
+}
+node {
+  name: "save/restore_slice_5/shape_and_slice"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_STRING
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_STRING
+        tensor_shape {
+        }
+        string_val: ""
+      }
+    }
+  }
+}
+node {
+  name: "save/restore_slice_5"
+  op: "RestoreSlice"
+  input: "save/Const"
+  input: "save/restore_slice_5/tensor_name"
+  input: "save/restore_slice_5/shape_and_slice"
+  attr {
+    key: "dt"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "preferred_shard"
+    value {
+      i: -1
+    }
+  }
+}
+node {
+  name: "save/Assign_5"
+  op: "Assign"
+  input: "dnn/layer2/Linear/Matrix"
+  input: "save/restore_slice_5"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "use_locking"
+    value {
+      b: true
+    }
+  }
+  attr {
+    key: "validate_shape"
+    value {
+      b: true
+    }
+  }
+}
+node {
+  name: "save/restore_slice_6/tensor_name"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_STRING
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_STRING
+        tensor_shape {
+        }
+        string_val: "global_step"
+      }
+    }
+  }
+}
+node {
+  name: "save/restore_slice_6/shape_and_slice"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_STRING
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_STRING
+        tensor_shape {
+        }
+        string_val: ""
+      }
+    }
+  }
+}
+node {
+  name: "save/restore_slice_6"
+  op: "RestoreSlice"
+  input: "save/Const"
+  input: "save/restore_slice_6/tensor_name"
+  input: "save/restore_slice_6/shape_and_slice"
+  attr {
+    key: "dt"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "preferred_shard"
+    value {
+      i: -1
+    }
+  }
+}
+node {
+  name: "save/Assign_6"
+  op: "Assign"
+  input: "global_step"
+  input: "save/restore_slice_6"
+  attr {
+    key: "T"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "use_locking"
+    value {
+      b: true
+    }
+  }
+  attr {
+    key: "validate_shape"
+    value {
+      b: true
+    }
+  }
+}
+node {
+  name: "save/restore_slice_7/tensor_name"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_STRING
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_STRING
+        tensor_shape {
+        }
+        string_val: "learning_rate"
+      }
+    }
+  }
+}
+node {
+  name: "save/restore_slice_7/shape_and_slice"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_STRING
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_STRING
+        tensor_shape {
+        }
+        string_val: ""
+      }
+    }
+  }
+}
+node {
+  name: "save/restore_slice_7"
+  op: "RestoreSlice"
+  input: "save/Const"
+  input: "save/restore_slice_7/tensor_name"
+  input: "save/restore_slice_7/shape_and_slice"
+  attr {
+    key: "dt"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "preferred_shard"
+    value {
+      i: -1
+    }
+  }
+}
+node {
+  name: "save/Assign_7"
+  op: "Assign"
+  input: "learning_rate"
+  input: "save/restore_slice_7"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "use_locking"
+    value {
+      b: true
+    }
+  }
+  attr {
+    key: "validate_shape"
+    value {
+      b: true
+    }
+  }
+}
+node {
+  name: "save/restore_slice_8/tensor_name"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_STRING
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_STRING
+        tensor_shape {
+        }
+        string_val: "logistic_regression/bias"
+      }
+    }
+  }
+}
+node {
+  name: "save/restore_slice_8/shape_and_slice"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_STRING
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_STRING
+        tensor_shape {
+        }
+        string_val: ""
+      }
+    }
+  }
+}
+node {
+  name: "save/restore_slice_8"
+  op: "RestoreSlice"
+  input: "save/Const"
+  input: "save/restore_slice_8/tensor_name"
+  input: "save/restore_slice_8/shape_and_slice"
+  attr {
+    key: "dt"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "preferred_shard"
+    value {
+      i: -1
+    }
+  }
+}
+node {
+  name: "save/Assign_8"
+  op: "Assign"
+  input: "logistic_regression/bias"
+  input: "save/restore_slice_8"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "use_locking"
+    value {
+      b: true
+    }
+  }
+  attr {
+    key: "validate_shape"
+    value {
+      b: true
+    }
+  }
+}
+node {
+  name: "save/restore_slice_9/tensor_name"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_STRING
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_STRING
+        tensor_shape {
+        }
+        string_val: "logistic_regression/weights"
+      }
+    }
+  }
+}
+node {
+  name: "save/restore_slice_9/shape_and_slice"
+  op: "Const"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_STRING
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_STRING
+        tensor_shape {
+        }
+        string_val: ""
+      }
+    }
+  }
+}
+node {
+  name: "save/restore_slice_9"
+  op: "RestoreSlice"
+  input: "save/Const"
+  input: "save/restore_slice_9/tensor_name"
+  input: "save/restore_slice_9/shape_and_slice"
+  attr {
+    key: "dt"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "preferred_shard"
+    value {
+      i: -1
+    }
+  }
+}
+node {
+  name: "save/Assign_9"
+  op: "Assign"
+  input: "logistic_regression/weights"
+  input: "save/restore_slice_9"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "use_locking"
+    value {
+      b: true
+    }
+  }
+  attr {
+    key: "validate_shape"
+    value {
+      b: true
+    }
+  }
+}
+node {
+  name: "save/restore_all"
+  op: "NoOp"
+  input: "^save/Assign"
+  input: "^save/Assign_1"
+  input: "^save/Assign_2"
+  input: "^save/Assign_3"
+  input: "^save/Assign_4"
+  input: "^save/Assign_5"
+  input: "^save/Assign_6"
+  input: "^save/Assign_7"
+  input: "^save/Assign_8"
+  input: "^save/Assign_9"
+}
+versions {
+  producer: 8
+}

@@ -1,0 +1,2 @@
+model_checkpoint_path: "/home/carmack/David/code/CPA-CNN/dropout_DNN_model/model-5000"
+all_model_checkpoint_paths: "/home/carmack/David/code/CPA-CNN/dropout_DNN_model/model-5000"
