@@ -1,0 +1,1 @@
+{"continue_training": false, "tf_master": "", "hidden_units": [64, 256, 8096], "verbose": 1, "class_name": "TensorFlowDNNClassifier", "learning_rate": 0.05, "num_cores": 4, "max_to_keep": 5, "batch_size": 1054, "steps": 5000, "n_classes": 22, "optimizer": "SGD", "keep_checkpoint_every_n_hours": 10000, "tf_random_seed": 42}
